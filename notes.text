@@ -136,3 +136,27 @@ Pipeline Methods
     eg: db.details.aggregate([
         {$group:{_id:"$subject", avgMarks: { $avg : "$marks"}}}
     ])
+
+3. $sort - sorts all documents
+    # ascending order(1), descending order(-1)
+    eg : db.details.aggregate {[
+        {$sort:{marks:-1}}
+    ]}
+
+4. $project - select or reshape fields
+    # choose which fields should be displayed under condition.
+    syntax : 
+
+
+count example : db.details.aggregate([{$group:{_id:"$subject", count:{$sum:1}}}])
+
+
+other Methods:  skip
+                limit
+                count
+                addfields
+                unset - to remove a certain field.  
+                lookup - to join 2 collections.     
+                merge
+                skip
+                out
