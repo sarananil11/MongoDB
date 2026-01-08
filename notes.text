@@ -1,0 +1,138 @@
+MONGO DB
+
+# It is a non sql db.
+# data is not saved as tables.
+# stores data in a flexible, JSON-like format called documents.
+
+eg : 
+    {
+        "name" : "John Doe",
+        "age" : 21,
+        "skills" : ["Node.js","React", "Javascript"]
+    }
+
+# Collections - documents - fields.
+
+Feature  -    Sql        -   NoSql
+
+
+ds       -    tables       -     collections(documents) 
+              & rows
+
+schema  -     fixed(predefined  - Dynamic (flexible schema)
+              structure)
+
+Scalability-  Vertical(Add  -     Horizontal (add more servers easily) 
+              more power to one
+              server)
+
+Query -       Sql        -        MongoDB Query Language (MQL).
+Language
+
+
+
+Features : 
+1. Document-Oriented-Storage
+# Data is stored in BSON format (Binary JSON)
+# Each documentcan have  a different structure - very flexible.
+
+2. Schema-less
+# No need of define a fixed schema before inserting data
+# Can easily add new fields.
+
+3. High perfomance
+# Fast read/write
+
+4. Scalability
+
+5. Indexing
+# Supports indexed to improve Query perfomance.
+
+6. Agregation framework
+# provides powerful tools for data Agregation and transformation.
+
+
+
+
+DATATYPES
+String
+number
+array
+object
+date - date & time
+objectId - unique(automatically created)
+
+
+
+
+CRUD
+
+1. Create operation
+    ` use - is a command to create collections ( use "collection name")
+    # insertOne() - used to insert single document - db.collection.insertOne({ document })
+    eg : use studentDb
+        db.students.insertOne({
+            name:"Asha",
+            age : 21,
+            course : "BCA"
+        })
+    
+    # insertMany() - used to insert multiple documents - db.insertMany([{doc1}, {doc2}])
+    eg : db.students.Many([{
+
+    }])
+
+2 Read operation
+
+    # Find() - Find all documents - db.collectionName.find()
+    # findOne() - find a specific document - db.collectionName.findOne({key:value})
+
+3 Update operation
+    # updateOne() - db.collectionName.updateOne(
+        {filter_condition},
+        {$set:{key1:newValue, key2:newValue}}
+    )
+    # updateMany() - db.collectionName.updateMany(
+        {filter_condition},
+        {$set:{key1:newValue, key2:newValue}}
+
+    )
+
+4 Delete operation
+    #deleteOne() - db.collectionName.deleteOne({filter_condition})
+    eg ; db.students.deleteOne({name : "liya"})
+    #deleteMany()
+
+
+
+AGGREGATION
+
+# Is a framework used to perform advanced featues like :
+    Filering
+    Grouping
+    Sorting
+    Calculating totals, averages, counts, etc.
+# In sql, we use groupBy, sum, average.... But to use them in MongoDB, we use Agregation pipeline.
+
+Pipeline syntax :
+    db.collection.aggegate([
+        {stage 1},
+        {stage 2},
+        {stage 3}
+        ])
+#Each stage starts with '$'. eg: $match,$group, $sort, $project.
+
+
+Pipeline Methods
+
+1. $match - filter documents
+    # to filter documents like SQL WHERE.
+    syntax : {$match:{field:{condition}}}
+
+2. $group - group and calculate
+    # groups documents by a field and calculate total, average, counts, etc.
+    syntax : {$group:{_id:"$field_to_group",avgField:{$avg:"$numericField"}, total:{$sum: "$numericField"}}}
+
+    eg: db.details.aggregate([
+        {$group:{_id:"$subject", avgMarks: { $avg : "$marks"}}}
+    ])
