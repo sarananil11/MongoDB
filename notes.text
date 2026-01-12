@@ -160,3 +160,21 @@ other Methods:  skip
                 merge
                 skip
                 out
+
+
+0-1-2026
+
+INDEXING
+
+# An index in MongoDB is a special ds that helps the db find data faster, like Indexing in a book.
+# Without indexing -> scans every document(COLLSCAN)
+# With indexing -> Directly locates the data(IXSCNAMN)
+
+Functionalities :
+        1. Faster query performance
+        2. Less CPU and memory usage
+        3. Efficient for large collectons
+        4. Improves user experience
+
+eg : first, type -->  db.users.createIndex({email:1})
+then, find email.
